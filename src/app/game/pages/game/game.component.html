@@ -1,0 +1,27 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+
+    <mat-card class="text">
+        <h1> SCORE: </h1>
+        <h2>User:<strong class="userScore">{{score.user}}</strong> Computer: <strong
+                class="computerScore">{{score.computer}}</strong> </h2>
+    </mat-card>
+</div>
+
+<mat-divider></mat-divider>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+
+    <mat-card class="choices" (click)="game( choice )" *ngFor="let choice of choices">
+        <img mat-card-sm-image src="assets/{{choice}}.png">
+    </mat-card>
+
+</div>
+
+<mat-divider></mat-divider>
+
+<mat-card class="text">
+    <h2 *ngIf="selectionMessage!=''"> {{ selectionMessage }}</h2>
+    <h1> RESULT: {{message}}</h1>
+    <h2>Games played: {{gamesPlayed}}</h2>
+
+</mat-card>

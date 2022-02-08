@@ -1,0 +1,30 @@
+.choices {
+    margin: 15px 20px;
+    text-align: center;
+  }
+
+.text {
+  width: 80%;
+  text-align: center;
+  margin: 1em auto;
+}
+
+strong{
+  margin: 0px 20px 0px 10px;
+}
+
+.userScore {
+  color: greenyellow;
+}
+
+.computerScore{
+  color:red;
+}
+
+mat-card:hover {
+  background-color: rgba(52, 54, 155, 0.733);
+}
+
+.mat-card:active {
+  background-color: rgba(43, 45, 182, 0.897);
+}

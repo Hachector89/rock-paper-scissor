@@ -15,14 +15,20 @@ export class LoginComponent implements OnInit {
   constructor( private router: Router ) { }
 
   ngOnInit(): void {
+
+    localStorage.clear();
+
   }
+
 
   login() {
 
-    //leer users de localdata
-    //establecer user activo y puntuacion activa
+    if(this.username.valid){
+      localStorage.setItem('userName', this.username.value);
+      this.router.navigate(['./home/game']);
+    }
 
-    this.username.valid ? this.router.navigate(['./home/game']) : null ;
+    //this.username.valid ? this.router.navigate(['./home/game']) : null ;
 
   }
 

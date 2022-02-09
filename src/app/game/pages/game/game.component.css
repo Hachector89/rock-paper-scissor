@@ -1,7 +1,19 @@
 .choices {
     margin: 15px 20px;
     text-align: center;
-  }
+ }
+
+.choices:hover {
+  background-color: rgba(52, 54, 155, 0.733);
+}
+
+.choices:active {
+  background-color: rgba(43, 45, 182, 0.897);
+}
+
+.icon{
+  max-width: 80%;
+}
 
 .text {
   width: 80%;
@@ -19,12 +31,4 @@ strong{
 
 .computerScore{
   color:red;
-}
-
-mat-card:hover {
-  background-color: rgba(52, 54, 155, 0.733);
-}
-
-.mat-card:active {
-  background-color: rgba(43, 45, 182, 0.897);
 }

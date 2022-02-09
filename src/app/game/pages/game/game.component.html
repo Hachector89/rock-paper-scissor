@@ -2,8 +2,8 @@
 
     <mat-card class="text">
         <h1> SCORE: </h1>
-        <h2>User:<strong class="userScore">{{score.user}}</strong> Computer: <strong
-                class="computerScore">{{score.computer}}</strong> </h2>
+        <h2>User:<strong class="userScore">{{user.wins}}</strong> Computer: <strong
+                class="computerScore">{{user.losses}}</strong> </h2>
     </mat-card>
 </div>
 
@@ -11,9 +11,9 @@
 
 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
 
-    <mat-card class="choices" (click)="game( choice )" *ngFor="let choice of choices">
-        <img mat-card-sm-image src="assets/{{choice}}.png">
-    </mat-card>
+    <button [disabled]="isCalling" mat-button class="choices" (click)="game( choice )" *ngFor="let choice of choices">
+        <img class="icon" src="assets/{{choice}}.png">
+    </button>   
 
 </div>
 
@@ -22,6 +22,6 @@
 <mat-card class="text">
     <h2 *ngIf="selectionMessage!=''"> {{ selectionMessage }}</h2>
     <h1> RESULT: {{message}}</h1>
-    <h2>Games played: {{gamesPlayed}}</h2>
+    <h2>Games played: {{user.total}}</h2>
 
 </mat-card>

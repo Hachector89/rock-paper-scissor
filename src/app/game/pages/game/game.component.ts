@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { user } from '../../../interface/user.interface';
+import { GameService } from '../../../service/game.service';
 
 @Component({
   selector: 'app-game',
@@ -7,24 +9,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 
-  constructor() { }
+  userName: string = localStorage.getItem('userName') || '';
 
-  ngOnInit(): void {
+  user: user = {
+    user: '',
+    wins: 0,
+    losses: 0,
+    total: 0
   }
 
-  score = {
-    computer: 0,
-    user: 0
-  };
-
-  gamesPlayed: number = 0;
   selectionMessage: string = '';
   message: string = '';
+
   previousComputer: string = '';
   computerSelection: string = '';
-  match: string = '';
+
+  actualMatch: string = '';
 
   choices: string[] = ['Rock', 'Paper', 'Scissor'];
+
+  isCalling: boolean = false;
+
+  constructor(private gameService: GameService) {
+
+  }
+
+  async ngOnInit() {
+
+    this.user = await this.gameService.readUser(this.userName);
+
+    this.saveGame();
+
+  }
+
 
   selectedComputer() {
 
@@ -46,12 +63,12 @@ export class GameComponent implements OnInit {
   }
 
   win() {
-    this.score.user++;
+    this.user.wins++;
     this.message = "You win!";
   }
 
   lose() {
-    this.score.computer++;
+    this.user.losses++;
     this.message = "You lose!";
   }
 
@@ -61,6 +78,8 @@ export class GameComponent implements OnInit {
 
   game(playerChoice: string) {
 
+   this.isCalling = true;
+
     this.selectionMessage = "USER: " + playerChoice + " - COMPUTER: ...";
 
     setTimeout(() => {
@@ -68,9 +87,9 @@ export class GameComponent implements OnInit {
       this.computerSelection = this.selectedComputer();
 
       this.selectionMessage = "USER: " + playerChoice + " - COMPUTER: " + this.computerSelection;
-      this.match = playerChoice + this.computerSelection;
+      this.actualMatch = playerChoice + this.computerSelection;
 
-      switch (this.match) {
+      switch (this.actualMatch) {
         case 'RockScissor':
         case 'ScissorPaper':
         case 'PaperRock':
@@ -87,9 +106,19 @@ export class GameComponent implements OnInit {
           this.tie();
       }
 
-      this.gamesPlayed++;
+      this.user.total++;
+
+      this.saveGame();
+
+      this.isCalling = false;
 
     }, 1000);
+
+  }
+
+  saveGame() {
+
+    this.gameService.addUser(this.user);
 
   }
 

@@ -16,7 +16,10 @@ export class HomeComponent implements OnInit {
 
   }
 
+  userName:string = localStorage.getItem('userName') || '';
+
   logout(){
+    localStorage.clear();
     this.router.navigate(['./auth']);
   }
 

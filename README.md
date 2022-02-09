@@ -21,4 +21,4 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Online app
 
-Go to ``.
+Go to `https://rock-paper-scissor-hector.web.app/auth/login` or `https://angry-borg-6e547f.netlify.app/auth/login`.
